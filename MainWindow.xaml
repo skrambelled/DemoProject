@@ -15,9 +15,12 @@
 
         <!-- Buttons for saving and adding items to the list -->
         <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Background="Blue">
-            <Button Content="Save" />
-            <Button Content="Delete"/>
-            <Button Content="Add"/>
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"/>
+            <Button Content="Delete"
+                    Command="{Binding DeleteCommand}"/>
+            <Button Content="Add"
+                    Command="{Binding AddCommand}"/>
         </StackPanel>
         
         <!-- DataGrid for viewing the Items we have in MainWindowViewModel-->

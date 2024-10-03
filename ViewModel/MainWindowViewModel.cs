@@ -1,36 +1,24 @@
 ﻿using DemoProject.Model;
 using DemoProject.MVVM;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace DemoProject.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
-        {
-            Items = new ObservableCollection<Item>();
-            Items.Add(new Item
-            {
-                Name = "Wendy",
-                FavoriteNumber = 22,
-                Birthday = new DateOnly(1955, 7, 28)
-            });
-            Items.Add(new Item
-            {
-                Name = "Mark",
-                FavoriteNumber = 13,
-                Birthday = new DateOnly(1986, 10, 4)
-            });
-            Items.Add(new Item
-            {
-                Name = "Crystal",
-                FavoriteNumber = 7,
-                Birthday = new DateOnly(1986, 7, 19)
-            });
-        }
+        public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
+        public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => (SelectedItem != null));
+        public RelayCommand SaveCommand => new RelayCommand(execute => SaveItems());
 
         // Items are bound to a DataGrid in the MainWindow
         public ObservableCollection<Item> Items { get; set; }
+
+        public MainWindowViewModel()
+        {
+            // Initialize our Items collection
+            Items = new ObservableCollection<Item>();
+        }
 
         // The SelectedItem is bound to the selected item in our MainWindow DataGrid
         private Item _selectedItem;
@@ -43,7 +31,23 @@ namespace DemoProject.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        private void AddItem()
+        {
+            Items.Add(new Item
+            {
+                Name = "Mark",
+                FavoriteNumber = 13,
+                Birthday = new DateOnly(1986, 10, 4)
+            });
+        }
+        private void DeleteItem()
+        {
+            Items.Remove(SelectedItem);
+        }
+        private void SaveItems()
+        {
+            throw new NotImplementedException();
+        }
 
     }
 

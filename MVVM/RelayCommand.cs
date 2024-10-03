@@ -1,11 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 namespace DemoProject.MVVM
 {
-    class RelayCommand : ICommand
+    internal class RelayCommand : ICommand
     {
         private Action<object> _execute;
-        private Func<object, bool>? _canExecute;
+        private Func<object, bool> _canExecute;
 
         public event EventHandler? CanExecuteChanged
         {
@@ -14,7 +15,7 @@ namespace DemoProject.MVVM
         }
 
         public RelayCommand(Action<object> execute,
-                            Func<object, bool>? canExecute = null)
+                            Func<object, bool> canExecute = null)
         {
             this._execute = execute;
             this._canExecute = canExecute;
@@ -25,7 +26,7 @@ namespace DemoProject.MVVM
         // if we can execute.
         public bool CanExecute(object? parameter)
         {
-            return _canExecute == null || CanExecute(parameter);
+            return _canExecute == null || _canExecute(parameter);
         }
 
         // Invoke the supplied Action
