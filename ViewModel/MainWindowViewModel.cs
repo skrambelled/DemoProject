@@ -49,6 +49,11 @@ namespace DemoProject.ViewModel
             throw new NotImplementedException();
         }
 
+        private bool CanSave()
+        {
+            return true;
+        }
+
     }
 
 }

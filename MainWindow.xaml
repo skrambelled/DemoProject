@@ -29,7 +29,8 @@
             SelectedItem="{Binding SelectedItem}"
             Background="DarkGray"
             CanUserAddRows="False" CanUserDeleteRows="False"
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="5*" />
                 <DataGridTextColumn Header="Favorite Number" Binding="{Binding FavoriteNumber}" Width="2*" />
