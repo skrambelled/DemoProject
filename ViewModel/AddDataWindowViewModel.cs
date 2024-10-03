@@ -9,5 +9,9 @@ namespace DemoProject.ViewModel
 {
     class AddDataWindowViewModel : ViewModelBase
     {
+        public AddDataWindowViewModel()
+        {
+            
+        }
     }
 }
