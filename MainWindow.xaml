@@ -7,6 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Two rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Buttons for saving and adding items to the list -->
+        <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Background="Blue">
+            <Button Content="Save" />
+            <Button Content="Delete"/>
+            <Button Content="Add"/>
+        </StackPanel>
+        
+        <!-- DataGrid for viewing the Items we have in MainWindowViewModel-->
+        <DataGrid Grid.Row="1"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem}"
+            Background="DarkGray"
+            CanUserAddRows="False" CanUserDeleteRows="False"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="5*" />
+                <DataGridTextColumn Header="Favorite Number" Binding="{Binding FavoriteNumber}" Width="2*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Birthday}" Width="3*" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
 </Window>
