@@ -1,15 +1,17 @@
 ﻿using DemoProject.Model;
 using DemoProject.MVVM;
+using DemoProject.View;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace DemoProject.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => (SelectedItem != null));
         public RelayCommand SaveCommand => new RelayCommand(execute => SaveItems());
+        public RelayCommand OpenAddDataCommand => new RelayCommand(execute => OpenAddDataWindow());
 
         // Items are bound to a DataGrid in the MainWindow
         public ObservableCollection<Item> Items { get; set; }
@@ -53,6 +55,24 @@ namespace DemoProject.ViewModel
         {
             return true;
         }
+        private void OpenAddDataWindow()
+        {
+            var mainWindow = Application.Current.MainWindow;
+            var addDataWindow = new AddDataWindow();
+            addDataWindow.Owner = mainWindow;
+
+            // Dim the main window
+            mainWindow.Opacity = 0.5;
+
+            // Un-dim the main window when the new window is closed
+            addDataWindow.Closed += (sender, e) =>
+            {
+                mainWindow.Opacity = 1.0;
+            };
+
+            addDataWindow.ShowDialog();
+        }
+
 
     }
 
