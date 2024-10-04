@@ -104,6 +104,8 @@ namespace DemoProject.ViewModel
             item.Name = data;
             item.NumberOfPets = 99;
             item.Birthday = new DateOnly(1999, 5, 5);
+
+            AddItem(item);
         }
     }
 
