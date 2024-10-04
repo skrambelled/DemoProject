@@ -6,34 +6,40 @@ namespace DemoProject.ViewModel
 {
     class AddDataWindowViewModel : ViewModelBase
     {
-        public RelayCommand OKCommand => new RelayCommand(execute => AddData(), canExecute => CanAddData());
-        public AddDataWindowViewModel()
+        public RelayCommand SubmitCommand => new RelayCommand(execute => SubmitData(), canExecute => CanSubmitData());
+
+        //private string _numberOfPets;
+
+        //public string NumberOfPets
+        //{
+        //    get { return _numberOfPets; }
+        //    set {
+        //        _numberOfPets = value;
+        //        OnPropertyChanged();
+        //        if(!Regex.IsMatch(value, @"^\d+$"))
+        //        {
+
+
+        //        }
+        //    }
+        //}
+
+        public event Action<string> DataSubmitted;
+
+        private string _data;
+
+        public string Data
         {
+            get { return _data; }
+            set { _data = value; }
         }
 
-        private string _numberOfPets;
-
-        public string NumberOfPets
+        public void SubmitData()
         {
-            get { return _numberOfPets; }
-            set {
-                _numberOfPets = value;
-                OnPropertyChanged();
-                if(!Regex.IsMatch(value, @"^\d+$"))
-                {
-                   
-
-                }
-            }
+            DataSubmitted?.Invoke(Data);
         }
 
-        public event EventHandler<AddItemEventArgs> DataReady;
-        public void AddData()
-        {
-
-        }
-
-        public bool CanAddData()
+        public bool CanSubmitData()
         {
             return true;
         }

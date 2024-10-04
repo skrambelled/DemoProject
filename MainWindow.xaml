@@ -21,6 +21,7 @@
                     Command="{Binding DeleteCommand}"/>
             <Button Content="Add"
                     Command="{Binding OpenAddDataCommand}"/>
+            <TextBlock Text="{Binding ReceivedData}" />
         </StackPanel>
         
         <!-- DataGrid for viewing the Items we have in MainWindowViewModel-->

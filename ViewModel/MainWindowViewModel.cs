@@ -33,19 +33,16 @@ namespace DemoProject.ViewModel
                 OnPropertyChanged();
             }
         }
-        private void AddItem()
+        private void AddItem(Item item)
         {
-            Items.Add(new Item
-            {
-                Name = "Mark",
-                NumberOfPets = 13,
-                Birthday = new DateOnly(1986, 10, 4)
-            });
+            Items.Add(item);
         }
+
         private void DeleteItem()
         {
             Items.Remove(SelectedItem);
         }
+
         private void SaveItems()
         {
             throw new NotImplementedException();
@@ -57,12 +54,24 @@ namespace DemoProject.ViewModel
         }
         private void OpenAddDataWindow()
         {
-            var mainWindow = Application.Current.MainWindow;
-            var addDataWindow = new AddDataWindow();
-            addDataWindow.Owner = mainWindow;
 
-            // Dim the main window
-            mainWindow.Opacity = 0.5;
+            // Instantiate the AddDataWindowViewModel
+            var addDataWindowViewModel = new AddDataWindowViewModel();
+
+            // Subscribe to the DataSubmitted event on the ViewModel
+            addDataWindowViewModel.DataSubmitted += OnDataSubmitted;
+
+            // Create the AddDataWindow and set its DataContext
+            var addDataWindow = new AddDataWindow
+            {
+                DataContext = addDataWindowViewModel
+            };
+
+
+
+            var mainWindow = Application.Current.MainWindow;
+            addDataWindow.Owner = mainWindow;
+            mainWindow.Opacity = 0.5; // Dim the main window
 
             // Un-dim the main window when the new window is closed
             addDataWindow.Closed += (sender, e) =>
@@ -70,10 +79,32 @@ namespace DemoProject.ViewModel
                 mainWindow.Opacity = 1.0;
             };
 
+            // Show the AddDataWindow
             addDataWindow.ShowDialog();
         }
+        
+        // Handle receiving data from the AddDataWindow after a
+        // user clicks on the "OK" button
+        private string _receivedData;
 
+        public string ReceivedData
+        {
+            get { return _receivedData; }
+            set
+            {
+                _receivedData = value;
+                OnPropertyChanged(nameof(ReceivedData));
+            }
+        }
+        private void OnDataSubmitted(string data)
+        {
+            ReceivedData = data;
 
+            Item item = new Item();
+            item.Name = data;
+            item.NumberOfPets = 99;
+            item.Birthday = new DateOnly(1999, 5, 5);
+        }
     }
 
 }
