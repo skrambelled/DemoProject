@@ -26,26 +26,17 @@ namespace DemoProject.ViewModel
 
         public event Action<string> DataSubmitted;
 
-        private string _data;
+        private string _boundName;
 
-        public string Data
+        public string BoundName
         {
-            get { return _data; }
-            set { _data = value; }
+            get { return _boundName; }
+            set { _boundName = value; }
         }
-
-        private Item _boundItem;
-
-        public Item BoundItem
-        {
-            get { return _boundItem; }
-            set { _boundItem = value; }
-        }
-
 
         public void SubmitData()
         {
-            DataSubmitted?.Invoke(Data);
+            DataSubmitted?.Invoke(BoundName);
         }
 
         public bool CanSubmitData()
