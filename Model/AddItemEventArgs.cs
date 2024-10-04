@@ -1,6 +1,6 @@
 ﻿namespace DemoProject.Model
 {
-    class Item
+    class AddItemEventArgs : EventArgs
     {
         public string? Name { get; set; }
         public int? NumberOfPets { get; set; }

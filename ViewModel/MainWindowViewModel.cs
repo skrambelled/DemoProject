@@ -38,7 +38,7 @@ namespace DemoProject.ViewModel
             Items.Add(new Item
             {
                 Name = "Mark",
-                FavoriteNumber = 13,
+                NumberOfPets = 13,
                 Birthday = new DateOnly(1986, 10, 4)
             });
         }
