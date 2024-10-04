@@ -6,8 +6,19 @@
         xmlns:local="clr-namespace:DemoProject.View"
         mc:Ignorable="d"
         Title="AddDataWindow" Height="200" Width="300"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0"/>
+        <TextBox Grid.Row="1" Text="Favorite Number"/>
+        <TextBox Grid.Row="2"/>
+        <Button Grid.Row="3" Content="OK" IsDefault="True"/>
     </Grid>
 </Window>
