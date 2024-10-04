@@ -34,6 +34,15 @@ namespace DemoProject.ViewModel
             set { _data = value; }
         }
 
+        private Item _boundItem;
+
+        public Item BoundItem
+        {
+            get { return _boundItem; }
+            set { _boundItem = value; }
+        }
+
+
         public void SubmitData()
         {
             DataSubmitted?.Invoke(Data);
