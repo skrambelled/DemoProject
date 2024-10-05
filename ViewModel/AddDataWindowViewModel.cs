@@ -1,6 +1,8 @@
 ﻿using DemoProject.Model;
 using DemoProject.MVVM;
 using System.ComponentModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace DemoProject.ViewModel
@@ -34,32 +36,36 @@ namespace DemoProject.ViewModel
             }
         }
  
-        private DateTime _selectedDate;
-        public DateTime SelectedDate
+        private DateTime _boundSelectedDate;
+        public DateTime BoundSelectedDate
         {
-            get { return _selectedDate; }
+            get { return _boundSelectedDate; }
             set
             {
-                _selectedDate = value;
+                _boundSelectedDate = value;
                 OnPropertyChanged();
             }
         }
 
         public void SubmitData()
         {
-            int year, month, day;
-            string name;
-            int pets;
+;
+            Item item = new Item();
 
-            DataSubmitted?.Invoke( BoundName );
+            item.Name = BoundName;
+            item.NumberOfPets = int.Parse(BoundNumberOfPets);
+            item.Birthday = BoundSelectedDate;
+
+            DataSubmitted?.Invoke( JsonSerializer.Serialize(item) );
         }
 
         public bool CanSubmitData()
         {
-            // Test if the first Textfield has some text at all
+            // Test if the Name input field has some text at all
             if (string.IsNullOrWhiteSpace(BoundName))
                 return false;
 
+            // Test if the Number of Pets input field is an valid number
             if(string.IsNullOrEmpty(BoundNumberOfPets) || !Regex.IsMatch(BoundNumberOfPets, @"^\d+$"))
                 return false;
 

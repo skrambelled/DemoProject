@@ -15,8 +15,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <TextBox FontSize="16" Height ="30" Text="{Binding BoundName, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox FontSize="16" Height ="30" Text="{Binding BoundNumberOfPets, UpdateSourceTrigger=PropertyChanged}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Name:" />
+                <TextBox Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundName, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Number of Pets: " />
+                <TextBox Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundNumberOfPets, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
             <DatePicker x:Name="datePicker" SelectedDate="{Binding BoundSelectedDate, Mode=TwoWay}" />
         </StackPanel>
          <Button Grid.Row="1" Content="OK" IsDefault="True"
