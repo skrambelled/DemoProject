@@ -1,18 +1,18 @@
 ﻿using DemoProject.Model;
 using DemoProject.MVVM;
 using DemoProject.View;
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace DemoProject.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => (SelectedItem != null));
-        public RelayCommand SaveCommand => new RelayCommand(execute => SaveItems());
+        public RelayCommand SaveCommand => new RelayCommand(execute => SaveFile());
         public RelayCommand OpenAddDataCommand => new RelayCommand(execute => OpenAddDataWindow());
 
         // Items are bound to a DataGrid in the MainWindow
@@ -45,9 +45,35 @@ namespace DemoProject.ViewModel
             Items.Remove(SelectedItem);
         }
 
-        private void SaveItems()
+        private void SaveFile()
         {
-            throw new NotImplementedException();
+            if (!Items.Any())
+            {
+                MessageBox.Show("No items to save. Cancelled");
+                return;
+            }
+
+            SaveFileDialog dialogue = new SaveFileDialog();
+
+            dialogue.Title = "Save Your File"; // Dialog title
+            dialogue.DefaultExt = ".txt"; // Default file extension
+            dialogue.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"; // File type filters
+            dialogue.OverwritePrompt = true; // Ask if file exists
+
+            bool? result = dialogue.ShowDialog();
+
+            if (result == true)
+            {
+                string path = dialogue.FileName;
+
+                File.WriteAllText(path, "Hello World!");
+
+                MessageBox.Show("File saved to: " + path);
+            }
+            else
+            {
+                MessageBox.Show("Save cancelled.");
+            }
         }
 
         private bool CanSave()

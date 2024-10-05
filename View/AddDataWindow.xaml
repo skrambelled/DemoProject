@@ -14,27 +14,30 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="7*"/>
-                </Grid.ColumnDefinitions>
-                
-                <TextBlock Text="Name:" />
-                <TextBox Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundName, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="7*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Number of Pets: " />
-                <TextBox Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundNumberOfPets, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
-            <DatePicker x:Name="datePicker" SelectedDate="{Binding BoundSelectedDate, Mode=TwoWay}" />
-        </StackPanel>
-         <Button Grid.Row="1" Content="OK" IsDefault="True"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition  />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" />
+            <TextBox Grid.Row="0" Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundName, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Number of Pets: " />
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" Height ="30" Text="{Binding BoundNumberOfPets, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Birthday:" />
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="datePicker" SelectedDate="{Binding BoundSelectedDate, Mode=TwoWay}" />
+
+        </Grid>
+
+        <Button Grid.Row="1" Content="OK" IsDefault="True"
                     Command="{Binding SubmitCommand}"/>
     </Grid>
 </Window>
