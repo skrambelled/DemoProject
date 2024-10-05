@@ -66,7 +66,7 @@ namespace DemoProject.ViewModel
             {
                 string path = dialogue.FileName;
 
-                File.WriteAllText(path, "Hello World!");
+                File.WriteAllText(path, JsonSerializer.Serialize(Items));
 
                 MessageBox.Show("File saved to: " + path);
             }
