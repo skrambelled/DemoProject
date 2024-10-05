@@ -20,7 +20,8 @@
             <Button Content="Delete"
                     Command="{Binding DeleteCommand}"/>
             <Button Content="Add"
-                    Command="{Binding AddCommand}"/>
+                    Command="{Binding OpenAddDataCommand}"/>
+            <TextBlock Text="{Binding ReceivedData}" />
         </StackPanel>
         
         <!-- DataGrid for viewing the Items we have in MainWindowViewModel-->
@@ -33,8 +34,8 @@
             SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="5*" />
-                <DataGridTextColumn Header="Favorite Number" Binding="{Binding FavoriteNumber}" Width="2*" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Birthday}" Width="3*" />
+                <DataGridTextColumn Header="Pets" Binding="{Binding NumberOfPets}" Width="2*" />
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}" Width="3*" />
             </DataGrid.Columns>
             
         </DataGrid>
