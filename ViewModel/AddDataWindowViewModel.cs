@@ -36,7 +36,7 @@ namespace DemoProject.ViewModel
             }
         }
  
-        private DateTime _boundSelectedDate;
+        private DateTime _boundSelectedDate = DateTime.Today;
         public DateTime BoundSelectedDate
         {
             get { return _boundSelectedDate; }
@@ -46,6 +46,8 @@ namespace DemoProject.ViewModel
                 OnPropertyChanged();
             }
         }
+
+
 
         public void SubmitData()
         {
