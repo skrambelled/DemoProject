@@ -10,17 +10,16 @@
         ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0"
-                 Text="{Binding BoundName}"/>
-        <TextBox Grid.Row="1" />
-        <TextBox Grid.Row="2"/>
-        <Button Grid.Row="3" Content="OK" IsDefault="True"
-                Command="{Binding SubmitCommand}"/>
+        <StackPanel>
+            <TextBox FontSize="16" Height ="30" Text="{Binding BoundName, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox FontSize="16" Height ="30" Text="{Binding BoundNumberOfPets, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker x:Name="datePicker" SelectedDate="{Binding BoundSelectedDate, Mode=TwoWay}" />
+        </StackPanel>
+         <Button Grid.Row="1" Content="OK" IsDefault="True"
+                    Command="{Binding SubmitCommand}"/>
     </Grid>
 </Window>

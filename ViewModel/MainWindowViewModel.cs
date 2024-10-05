@@ -102,7 +102,7 @@ namespace DemoProject.ViewModel
 
             Item item = new Item();
             item.Name = data;
-            item.NumberOfPets = 99;
+            item.NumberOfPets = 12;
             item.Birthday = new DateOnly(1999, 5, 5);
 
             AddItem(item);
